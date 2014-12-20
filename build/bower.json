@@ -1,0 +1,11 @@
+{
+  "name": "benhue",
+  "version": "0.0.1",
+  "description": "HTML Frontend for Phillips hue",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "jquery": "~2.1.3",
+    "colorspaces.js": "git://github.com/boronine/colorspaces.js.git#~0.1.4"
+  }
+}
