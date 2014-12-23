@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
     console.log('App Started...');
     var hueAdress = '192.168.1.31';
 

@@ -1,0 +1,46 @@
+.curLightState {
+  display: block;
+  position: relative;
+
+  float: left;
+  margin: 0 20px;
+  border: 1px solid #888;
+  text-align: center;
+
+  i.lamp {
+    padding:20px 20px;
+    font-size: 90px;
+    color: #fff;
+  }
+
+  .tools {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    a {
+      color: #fff;
+      padding: 5px;
+      &:hover,
+      &:active,
+      &:visited
+      {
+        color: #fff;
+      }
+    }
+
+    a.powerswitch {
+
+    }
+
+    a.selectcolor {
+
+    }
+  }
+
+
+
+  &.active {
+    border-color: #fff;
+  }
+}

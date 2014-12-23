@@ -3,6 +3,7 @@ var UILights = function (hue /* Hue */) {
     this.selectedLampName = null;
     this.lights = [];
     this.hue = hue;
+    this.$powerSwitch = null;
 
     this.setLights = function(allLights) {
         this.lights = allLights;
@@ -21,7 +22,11 @@ var UILights = function (hue /* Hue */) {
     this.drawUI = function() {
         $.each(this.lights, function(k, light /* HueLight */) {
             var $currentState = ('<div class="curLightState" data-lightname="'+light.getName()+'" data-lightindex="'+light.getIndex()+'" style="background-color: #000;">' +
-                '<i class=" fa fa-lightbulb-o" title="'+light.getName()+'"></i>'+
+                '<i class="lamp fa fa-lightbulb-o" title="'+light.getName()+'"></i>'+
+                '<div class="tools">'+
+                '<a href="#" class="colorselect"><i class="fa  fa-cubes" title="Set color"></i>'+
+                '<a href="#" class="powerswitch"><i class="fa fa-power-off" title="Power On/Off"></i>'+
+                '</div>'+
                 '</div>');
 
             $('body').append($currentState);
@@ -58,12 +63,19 @@ var UILights = function (hue /* Hue */) {
         })
 
         $(document).on('click', '.curLightState', function(event) {
-            console.log('CLICK!');
             that.selectedLampName = $(this).data('lightname');
             $('.curLightState').removeClass('active');
             $(this).addClass('active');
             event.preventDefault();
         });
+
+        $(document).on('click', '.powerswitch', function(event) {
+            var light /* HueLight */ = that.hue.getLightByName($(this).parents('.curLightState:first').data('lightname'));
+            light.setOn(!light.getOn());
+            event.preventDefault();
+        });
+
+
     };
 
     return this;

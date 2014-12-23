@@ -55,6 +55,7 @@ var HueLight = function (hueConnect, index, data) {
 
     this.setColorHSB = function (h, s, b) {
         console.log('Set Lamp '+this.getIndex()+' "'+this.getName()+'" to hsb('+h+','+s+','+b+')');
+        // dim the values around 180° (because they are too bright!)
         b = this.correctBrightness(h, b, {centerHue: 150, amp: 75, width: 140});
         console.log('- correct brigtness to '+b);
 
@@ -89,17 +90,12 @@ var HueLight = function (hueConnect, index, data) {
         return this;
     };
 
-
-
-
     this.logColor = function (rgbObject) {
         var hsb = this.rgb2hsb(rgbObject);
         var color = 'rgb(' + rgbObject.r + ', ' + rgbObject.g + ', ' + rgbObject.b + ')';
         console.log('logColor', color, rgbObject, hsb);
         $('body').append('<div class="" style="display:block; width:50px; height:50px; float:left; background-color: ' + color + ';">H: ' + Math.round(hsb.h) + '<br>B: ' + Math.round(hsb.b) + '<br></div>');
     };
-
-
 
     this.correctBrightness = function (currentHue, currentBrigtness, damperObject) {
         var damperValue = 100;
