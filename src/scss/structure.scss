@@ -1,2 +1,6 @@
+$fa-font-path: './fonts';
+@import '../../build/bower_components/font-awesome/scss/font-awesome.scss';
 
 @import 'structure/base';
+@import 'structure/uiLights';
+

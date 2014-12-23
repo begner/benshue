@@ -3,6 +3,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -13,11 +14,13 @@ module.exports = function (grunt) {
 
         watch: require('./tasks/watch.js')(grunt),
         compass: require('./tasks/compass.js')(grunt),
-        uglify: require('./tasks/uglify.js')(grunt)
+        uglify: require('./tasks/uglify.js')(grunt),
+        copy: require('./tasks/copy.js')(grunt)
 
     });
 
-    grunt.registerTask('default', ['compass', 'uglify']);
+    grunt.registerTask('build', ['compass', 'uglify', 'copy']);
+    grunt.registerTask('buildDev', ['compass:dev', 'uglify:dev', 'copy']);
 
 
 };
