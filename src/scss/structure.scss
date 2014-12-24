@@ -1,6 +1,14 @@
-$fa-font-path: './fonts';
+@import 'compass/css3/text-shadow';
+@import 'compass/utilities/general/clearfix';
+@import 'compass/css3/inline-block';
+
+@import 'variables';
+
 @import '../../build/bower_components/font-awesome/scss/font-awesome.scss';
+@import '../../build/bower_components/bootstrap-sass/lib/bootstrap.scss';
 
 @import 'structure/base';
+@import 'structure/view';
 @import 'structure/uiLights';
+
 

@@ -1,7 +1,34 @@
 body {
-    color: #fff;
-    background: {
-        color: #000;
-    }
+  background: {
+    color: $benhueSkinBackgroundColor;
+  }
+}
 
+/* overwrite bootstraps navbar background color */
+.navbar {
+  background: {
+    color: $benhueSkinBackgroundColor;
+  }
+}
+
+/* overwrite bootstraps navbar padding to brand image */
+.navbar-brand {
+  padding: 0;
+}
+
+/* removing the 3d border mobile menu on expand state */
+.navbar-collapse {
+  border-top: 0;
+  @include box-shadow(none);
+}
+
+/* rainbox navbar border */
+.navbar:after {
+  height: 3px;
+  display: block;
+
+  background: {
+    image: image-url('header.png');
+    size: 100% 3px;
+  };
 }

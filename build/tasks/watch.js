@@ -7,9 +7,23 @@ module.exports = function (grunt) {
                 spawn: false
             }
         },
-        scripts: {
+        js: {
             files: ['<%= srcDir %>js/**/*.js'],
             tasks: ['uglify:dev'],
+            options: {
+                spawn: false
+            }
+        },
+        html: {
+            files: ['<%= srcDir %>html/**/*'],
+            tasks: ['copy:html'],
+            options: {
+                spawn: false
+            }
+        },
+        images: {
+            files: ['<%= srcDir %>images/**/*'],
+            tasks: ['copy:images'],
             options: {
                 spawn: false
             }

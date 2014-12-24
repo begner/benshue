@@ -4,18 +4,19 @@ module.exports = function (grunt) {
 
 
     var options = {
-        sassDir: '<%= srcDir %>/scss/',
-        cssDir: '<%= targetDir %>/css/',
-        fontsDir: '<%= targetDir %>/css/fonts/',
-        imagesDir: '<%= targetDir %>/css/'
+        sassDir: '<%= rootDir %>src/scss/',
+        cssPath: '<%= targetDir %>css/',
+        imagesPath: '<%= targetDir %>/images/',
+        imagesDir: '<%= srcDir %>src',
+        relativeAssets: true
     };
 
     return {
         dev: {
-            options: extend(true, {}, options, {environment: 'development'})
+            options: extend(true, {}, options, {environment: 'development', outputStyle: 'expanded', noLineComments: false, sourcemap: true})
         },
         prod: {
-            options: extend(true, {}, options, {environment: 'production'})
+            options: extend(true, {}, options, {environment: 'production', outputStyle: 'compressed'})
         }
     }
 }

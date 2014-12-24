@@ -1,0 +1,13 @@
+section.view#init_authorize {
+  .authorize {
+    display: block;
+    width: image-width('authorize.png')/2;
+    height: image-height('authorize.png')/2;
+    margin: 0 auto;
+
+    background: {
+      image: image-url('authorize.png');
+      size: image-width('authorize.png')/2 image-height('authorize.png')/2
+    }
+  }
+}

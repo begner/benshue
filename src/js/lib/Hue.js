@@ -2,13 +2,18 @@ var Hue = function () {
 
     this.bridgeAdress = null;
     this.deviceType = "benhue";
-    this.username = "benhueclient3";
+    this.username = null;
     this.connector = null;
 
     this.lights = [];
     this.bridgeData = {};
     this.onAuthorizationNeeded = function() { console.log('press link button and reload!'); };
     this.onConnect = function() { console.log('connected', this.bridgeData); };
+
+    this.setUsername = function(username) {
+        this.username = username;
+        return this;
+    };
 
     this.setOnAuthorizationNeeded = function(callback) {
         this.onAuthorizationNeeded = callback;

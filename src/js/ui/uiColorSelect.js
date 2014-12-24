@@ -1,6 +1,7 @@
-var UIColorSelect = function () {
+var UIColorSelect = function ($container /* jquery */) {
 
     this.$colorInput = null;
+    this.$container = $container;
 
     this.initialize = function() {
         this.drawUI();
@@ -10,7 +11,7 @@ var UIColorSelect = function () {
 
     this.drawUI = function() {
         this.$colorInput = $('<input type="hidden" id="color-input" value="">');
-        $('body').append(this.$colorInput);
+        this.$container.append(this.$colorInput);
     };
 
 

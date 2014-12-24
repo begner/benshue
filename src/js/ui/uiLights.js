@@ -1,12 +1,13 @@
-var UILights = function (hue /* Hue */) {
+var UILights = function (hue /* Hue */, $container /* jquery */) {
 
     this.selectedLampName = null;
     this.lights = [];
     this.hue = hue;
     this.$powerSwitch = null;
+    this.$container = $container;
 
-    this.setLights = function(allLights) {
-        this.lights = allLights;
+    this.setLights = function() {
+        this.lights = this.hue.getAllLights();
     };
 
     this.getSelectedLamp = function() {
@@ -20,16 +21,17 @@ var UILights = function (hue /* Hue */) {
     };
 
     this.drawUI = function() {
+        var that = this;
         $.each(this.lights, function(k, light /* HueLight */) {
             var $currentState = ('<div class="curLightState" data-lightname="'+light.getName()+'" data-lightindex="'+light.getIndex()+'" style="background-color: #000;">' +
                 '<i class="lamp fa fa-lightbulb-o" title="'+light.getName()+'"></i>'+
                 '<div class="tools">'+
-                '<a href="#" class="colorselect"><i class="fa  fa-cubes" title="Set color"></i>'+
+                '<a href="#" class="colorselect"><i class="fa fa-tint" title="Set color"></i>'+
                 '<a href="#" class="powerswitch"><i class="fa fa-power-off" title="Power On/Off"></i>'+
                 '</div>'+
                 '</div>');
 
-            $('body').append($currentState);
+            that.$container.append($currentState);
             $(window).trigger('hue-change', light);
         });
     };
@@ -46,8 +48,9 @@ var UILights = function (hue /* Hue */) {
                 $curObject.css('background-color', 'rgb('+color.r+','+color.g+','+color.b+')');
                 }
             else {
-                $curObject.css('background-color', 'black');
+                $curObject.css('background-color', '');
                 $curObject.css('opacity', 0.2);
+
                 }
            console.log('hue-change', name, color);
         });
