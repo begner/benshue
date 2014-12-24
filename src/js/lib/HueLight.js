@@ -40,7 +40,7 @@ var HueLight = function (hueConnect, index, data) {
     };
 
     this.setOn = function(on) {
-        var response = this.hueConnect.api('lights/' + this.lightIndex + "/state", {'on': on});
+        var response = this.hueConnect.api('lights/' + this.lightIndex + "/state", {'on': on, 'transitiontime': 0});
         this.updateResponseData(response);
         $(window).trigger('hue-change', this);
     };
@@ -63,7 +63,8 @@ var HueLight = function (hueConnect, index, data) {
             'on': true,
             'hue': Math.round(h / 360 * 65535),
             'bri': Math.round(b / 100 * 255),
-            'sat': Math.round(s / 100 * 255)
+            'sat': Math.round(s / 100 * 255),
+            'transitiontime': 0
         };
 
         var response = this.hueConnect.api('lights/' + this.lightIndex + "/state", data);
