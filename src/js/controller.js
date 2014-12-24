@@ -61,10 +61,10 @@ var Controller = function () {
     this.determineFromHash = function(oldViewName) {
         var viewName = oldViewName;
         var hash = window.location.hash.toString().substr(1);
-        if ($('section.view[id="'+hash+'"]').length > 0) {
+        if (hash !== '' && $('section.view[id="'+hash+'"]').length > 0) {
             viewName = hash;
         }
-        return hash;
+        return viewName;
     };
 
     this.startApp = function() {
@@ -100,28 +100,24 @@ var Controller = function () {
     this.hideView = function(view, afterHideCallback) {
         view.getViewContainer().stop().hide( 'clip', {}, 500, function() {
             view.onClose();
-            afterHideCallback();
+            if (typeof(afterHideCallback) === 'function') {
+                afterHideCallback();
+            }
         });
-    }
+    };
+
+    this.setNav = function(viewName) {
+        $('ul.navbar-nav').find('li').removeClass('active');
+        $('ul.navbar-nav').find('li a[href$="#'+viewName+'"]').parents('li:first').addClass('active');
+    };
 
     this.showView = function(viewName) {
         var that = this;
 
         console.log('show view '+viewName);
         if (this.currentView) {
-            this.hideView(this.currentView, function() {
-                that.prepareView(viewName)
-            });
+            this.hideView(this.currentView);
         }
-        else {
-            this.prepareView(viewName);
-        }
-
-    };
-
-    this.prepareView = function(viewName) {
-        var that = this;
-
 
         if (this.views[viewName]) {
             this.currentView = this.views[viewName];
@@ -136,6 +132,7 @@ var Controller = function () {
                 .setController(this);
         }
 
+        this.setNav(viewName);
         this.currentView.getViewContainer().stop().hide().show( 'blind', {}, 500, function() {
             that.currentView.onOpen();
         });
